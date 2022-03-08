@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2 id="result">HTML DOM</h2>
+    <button type="button" onclick="getNodeList()">Send</button>
+    <script>
+
+        function getNodeList() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    myBooks(this);
+                }
+            }
+            xhttp.open("GET", "books.xml", true);
+            xhttp.send();
+        }
+
+        function myBooks(xmlObj) {
+            var xmlDoc, path, nodes, result, i, txt = "";
+            xmlDoc = xmlObj.responseXML;
+            path = "/bookstore/book[price > 200]/title";
+            if (xmlDoc.evaluate) {
+                nodes = xmlDoc.evaluate(path, xmlDoc, null, XPathResult.ANY_TYPE, null);
+                result = nodes.iterateNext();
+                while (result) {
+                    txt += result.childNodes[0].nodeValue + "<br/>";
+                    result = nodes.iterateNext();
+                }
+            } else if (window.ActiveXObject || xmlObj.resonseType == "msxml-document") {
+                xmlDoc.setProperty("SelectionLanguage", "XPath");
+                nodes = xmlDoc.selectNodes(path);
+                for (i = 0; i < nodes.length; i++) {
+                    txt += nodes[i].childNodes[0].nodeValue + "<br/>";
+                }
+            }
+            document.querySelector("#result").innerHTML = txt;
+        }
+    </script>
+</body>
+
+</html>

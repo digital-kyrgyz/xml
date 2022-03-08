@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!DOCTYPE bookstore[
+    <!ELEMENT bookstore (book*)>
+    <!ELEMENT book (title, author, year, price)>
+    <!ELEMENT title (#PCDATA)>
+    <!ELEMENT author (#PCDATA)>
+    <!ELEMENT year (#PCDATA)>
+    <!ELEMENT price (#PCDATA)>
+    <!ENTITY writer "Melis Archabaev">
+    <!ENTITY copyright "Copyright all rights reserved">
+]>
+<bookstore xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="book.xsd">
+    <book category="fantastic">
+        <title lang="tr">Чистый код</title>
+        <author>Мартин Роберт &writer; &copyright;</author>
+        <year>2008-03-21</year>
+        <price>400</price>
+        <page></page>
+    </book>
+    <book category="mystery">
+        <title lang="kg" deneme="melis">Чистая архитектура</title>
+        <author>Мартин Роберт</author>
+        <year>2010-05-23</year>
+        <price>300</price>
+        <page></page>
+    </book>
+    <book category="literature">
+        <title>Думай как математик</title>
+        <author>Барбара Оакли</author>
+        <year>2015-05-12</year>
+        <price>200</price>
+        <page></page>
+    </book>
+</bookstore>

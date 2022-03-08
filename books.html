@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function showResult() {
+            var xml, xsl, result, resultDocument, xsltP;
+            xml = xmlDocumentLoad("books.xml");
+            xsl = xmlDocumentLoad("books.xsl");
+            if (window.ActiveXObject) {
+                result = xml.transformNode(xsl);
+                document.querySelector("#result").innerHTML = result;
+            } else if (document.implementation && document.implementation.createDocument) {
+                xsltP = new XSLTProcessor();
+                xsltP.importStylesheet(xsl);
+                resultDocument = xsltP.transformToFragment(xml, document);
+                document.querySelector("#result").appendChild(resultDocument);
+            }
+        }
+
+
+        function xmlDocumentLoad(fileName) {
+            var xhttp;
+            xhttp = new XMLHttpRequest();
+            xhttp.open("GET", fileName, false);
+            xhttp.send("");
+            return xhttp.responseXML;
+        }
+    </script>
+</head>
+
+<body onload="showResult()">
+    <div id="result">
+    </div>
+</body>
+
+</html>

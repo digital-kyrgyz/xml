@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="dinner.xsl"?>
+<dinner>
+    <food>
+        <name>Shawerma</name>
+        <price>10</price>
+        <description>This is shawerma made from cow meat</description>
+        <calorie>750</calorie>
+    </food>
+    <food>
+        <name>Adana Kebab</name>
+        <price>140</price>
+        <description>Turkey recept</description>
+        <calorie>810</calorie>
+    </food>
+    <food>
+        <name>Hamburger</name>
+        <price>13</price>
+        <description>From original and fresh meat</description>
+        <calorie>800</calorie>
+    </food>
+</dinner>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+    <xs:element name="bookstore">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="book" maxOccurs="unbounded" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="book">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:group ref="booksGroup"/>
+            </xs:sequence>
+            <xs:attribute name="category" type="xs:string" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="year" type="xs:date" />
+    <xs:element name="price" type="xs:integer" />
+
+    <xs:element name="title">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute name="lang" type="xs:token" />
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="header" substitutionGroup="title"/>
+
+    <xs:element name="page">
+        <xs:simpleType>
+            <xs:restriction base="xs:integer">
+                <xs:minInclusive value="100"/>
+                <xs:maxInclusive value="500"/>
+                <xs:pattern value="[0-9][0-9][0-9]"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+
+    <xs:element name="author">
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:enumeration value="Мартин Роберт"/>
+                <xs:enumeration value="Барбара Оакли"/>
+                <xs:pattern value="([а-яА-Я])+"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+    
+    <xs:group name="booksGroup">
+        <xs:element ref="title" />
+        <xs:element ref="author" />
+        <xs:element ref="year" />
+        <xs:element ref="price" />
+        <xs:element ref="page"/>
+        <xs:any minOccurs="1" maxOccurs="5"/>
+    </xs:group>
+
+</xs:schema>
